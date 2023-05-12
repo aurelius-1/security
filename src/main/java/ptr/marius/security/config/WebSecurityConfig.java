@@ -11,18 +11,18 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 public class WebSecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        var uds = new InMemoryUserDetailsManager();
-        var u1 = User.withUsername("bill")
-                .password("12345")
-                .authorities("read")
-                .build();
-
-        uds.createUser(u1);
-
-        return uds;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        var uds = new InMemoryUserDetailsManager();
+//        var u1 = User.withUsername("bill")
+//                .password("12345")
+//                .authorities("read")
+//                .build();
+//
+//        uds.createUser(u1);
+//
+//        return uds;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
