@@ -13,6 +13,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Value("${our.very.very.very.secret.key}")
     private String key;
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         CustomAuthentication customAuthentication = (CustomAuthentication) authentication;
