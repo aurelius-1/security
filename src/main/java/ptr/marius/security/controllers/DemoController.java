@@ -10,9 +10,6 @@ public class DemoController {
     @GetMapping("/demo")
     public String hello() {
 
-        var u = SecurityContextHolder.getContext().getAuthentication();
-        u.getAuthorities().forEach(a -> System.out.println(a));
-
         return "Hello";
     }
 

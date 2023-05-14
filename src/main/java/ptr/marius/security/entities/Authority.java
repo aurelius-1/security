@@ -25,5 +25,4 @@ public class Authority {
 
     @ManyToMany(mappedBy = "authorities")
     private Set<User> users;
-
 }

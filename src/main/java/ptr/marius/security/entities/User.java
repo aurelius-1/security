@@ -30,7 +30,8 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_authorities",
-                joinColumns = @JoinColumn(name = "userId"),
-                inverseJoinColumns = @JoinColumn(name = "authorityId"))
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "authority_id")
+    )
     private Set<Authority> authorities;
 }
