@@ -11,7 +11,7 @@ import ptr.marius.security.config.security.authentication.CustomAuthentication;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    @Value("${our.very.very.very.secret.key}")
+    @Value("${our.very.secret.key}")
     private String key;
 
     @Override
