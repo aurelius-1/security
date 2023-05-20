@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
@@ -14,6 +16,51 @@ public class WebSecurityConfig {
 
     @Value("${our.very.secret.key}")
     private String key;
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        return httpSecurity.httpBasic()
+                .and()
+                .authorizeRequests()
+//                    .anyRequest().authenticated() //endpoint level authorization
+//                .anyRequest().permitAll()
+//                .anyRequest().denyAll()
+//                .anyRequest().hasAuthority("write")
+//                .anyRequest().hasAnyAuthority("read", "write")
+//                .anyRequest().hasRole("ADMIN")
+//                .anyRequest().hasAnyRole("ADMIN", "MANAGER")
+//                .anyRequest().access("isAuthenticated() and hasAuthority('read')")
+//                .anyRequest().hasRole("ADMIN")
+                .and().build();
+
+
+        //matcher method + authorization rule
+        // 1. which matcher methods should you use and how ( anyRequest(), antMatchers(), mvcMatchers(), regexMatchers() )
+        // 2. how to apply different authorization rules
+    }
+
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        var uds = new InMemoryUserDetailsManager();
+//
+//        var u1 = User.withUsername("bill")
+//                .password(passwordEncoder().encode("12345"))
+//                .authorities("read")
+//                .roles("ADMIN")
+//                .build();
+//
+//        var u2 = User.withUsername("john")
+//                .password(passwordEncoder().encode("12345"))
+//                .authorities("write")
+//                .roles("MANAGER")
+//                .build();
+//
+//        uds.createUser(u1);
+//
+//        uds.createUser(u2);
+//
+//        return uds;
+//    }
 
 //    private final CustomAuthenticationFilter customAuthenticationFilter;
 //    private final ApiKeyFilter apiKeyFilter;
