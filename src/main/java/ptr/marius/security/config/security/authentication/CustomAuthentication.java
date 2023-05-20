@@ -16,6 +16,7 @@ public class CustomAuthentication implements Authentication {
 
     private final boolean authentication;
     private final String key;
+
     @Override
     public boolean isAuthenticated() {
         return authentication;

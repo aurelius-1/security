@@ -8,7 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import ptr.marius.security.config.security.providers.CustomAuthenticationProvider;
 
-//@Component
+@Component
 @AllArgsConstructor
 public class CustomAuthenticationManager implements AuthenticationManager {
 

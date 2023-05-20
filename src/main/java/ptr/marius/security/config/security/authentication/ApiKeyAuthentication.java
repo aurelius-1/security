@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collection;
 
 @Component
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class ApiKeyAuthentication implements Authentication {
 
     private String key = "secrett";

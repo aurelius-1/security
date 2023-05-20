@@ -8,7 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import ptr.marius.security.config.security.authentication.CustomAuthentication;
 
-//@Component
+@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     @Value("${our.very.secret.key}")

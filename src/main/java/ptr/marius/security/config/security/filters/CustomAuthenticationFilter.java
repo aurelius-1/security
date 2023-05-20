@@ -13,7 +13,7 @@ import ptr.marius.security.config.security.managers.CustomAuthenticationManager;
 
 import java.io.IOException;
 
-//@Component
+@Component
 @AllArgsConstructor
 public class CustomAuthenticationFilter extends OncePerRequestFilter {
 
