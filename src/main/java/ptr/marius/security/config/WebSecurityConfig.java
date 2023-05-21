@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -19,10 +21,17 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.httpBasic()
+        return httpSecurity
+                .authorizeHttpRequests(
+                        c -> c.requestMatchers(new AntPathRequestMatcher("/test", HttpMethod.GET.name())).permitAll()
+                                .requestMatchers(new AntPathRequestMatcher("/test/", HttpMethod.POST.name())).hasAuthority("write")
+                                .requestMatchers(new AntPathRequestMatcher("/demo/")).hasAuthority("write")
+                                .anyRequest().authenticated()
+                )
+                .httpBasic()
                 .and()
-                .authorizeRequests()
-//                    .anyRequest().authenticated() //endpoint level authorization
+//                .csrf().disable() //DON'T USE IN PROD CODE
+                    //endpoint level authorization
 //                .anyRequest().permitAll()
 //                .anyRequest().denyAll()
 //                .anyRequest().hasAuthority("write")
@@ -30,8 +39,8 @@ public class WebSecurityConfig {
 //                .anyRequest().hasRole("ADMIN")
 //                .anyRequest().hasAnyRole("ADMIN", "MANAGER")
 //                .anyRequest().access("isAuthenticated() and hasAuthority('read')")
-//                .anyRequest().hasRole("ADMIN")
-                .and().build();
+//                .anyRequest().hasRole("MANAGER")
+                .build();
 
 
         //matcher method + authorization rule
